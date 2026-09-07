@@ -1,0 +1,293 @@
+/* ==========================================================================
+   MUST Automated Student Clearance System - Stylesheet
+   ========================================================================== */
+
+:root {
+  --primary-color: #0b3c5d;      /* Deep Navy Blue (MUST Theme) */
+  --secondary-color: #d9b310;    /* Gold/Yellow Accent */
+  --bg-color: #f4f7f6;           /* Neutral Gray/White Background */
+  --text-color: #323232;         /* Dark Slate Text */
+  --card-bg: #ffffff;
+  --sidebar-width: 250px;
+  
+  /* Status Colors */
+  --success: #28a745;            /* Approved / Cleared */
+  --warning: #ffc107;            /* Pending / In Progress */
+  --danger: #dc3545;             /* Rejected / Issues */
+  --info: #17a2b8;
+  
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* AUTHENTICATION PAGE */
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #061e30 100%);
+  padding: 1rem;
+}
+
+.auth-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.auth-card h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.auth-card p {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(11, 60, 93, 0.3);
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn:hover { background-color: #082a42; }
+.btn-success { background-color: var(--success); }
+.btn-success:hover { background-color: #218838; }
+.btn-danger { background-color: var(--danger); }
+.btn-danger:hover { background-color: #c82333; }
+.btn-warning { background-color: var(--warning); color: #212529; }
+
+/* DASHBOARD LAYOUT */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.sidebar h3 {
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.8rem;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar nav a {
+  color: #cfd8dc;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.sidebar nav a.active, 
+.sidebar nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 1.2rem 2rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.header h2 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.progress-bar-container {
+  background: #e9ecef;
+  border-radius: 10px;
+  height: 16px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-bar {
+  background: var(--success);
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+/* TABLES & BADGES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #f1f4f6;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.badge-pending { background-color: var(--warning); color: #212529; }
+.badge-approved { background-color: var(--success); }
+.badge-rejected { background-color: var(--danger); }
+
+/* MOBILE RESPONSIVE MENU TOGGLE */
+.mobile-header {
+  display: none;
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-toggle-btn {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container { flex-direction: column; }
+  .mobile-header { display: flex; }
+  .sidebar {
+    display: none;
+    width: 100%;
+  }
+  .sidebar.show { display: flex; }
+  .main-content { padding: 1rem; }
+}

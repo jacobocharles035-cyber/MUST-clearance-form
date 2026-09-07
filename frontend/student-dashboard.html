@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - MUST Clearance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mobile-header">
+    <h3>MUST Clearance</h3>
+    <button class="menu-toggle-btn" id="menuToggleBtn">☰ Menyu</button>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="sidebar" id="sidebar">
+      <h3>MUST Clearance</h3>
+      <nav>
+        <a href="student-dashboard.html" class="active">Dashboard</a>
+        <a href="student-request.html">Tuma Maombi</a>
+        <a href="index.html" onclick="logout()">Ondoka (Logout)</a>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <h2>Dashboard ya Mwanafunzi</h2>
+        <div><strong id="currentUsername">Mwanafunzi</strong> (<span id="currentRegNo">---</span>)</div>
+      </div>
+
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3>Maendeleo ya Clearance (Overall Status)</h3>
+        <p style="margin: 0.5rem 0;">Hatua zilizokamilika: <strong id="progressText">0 / 6 Idara</strong></p>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <h3>Hali ya Clearance kwa Idara</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Idara</th>
+            <th>Maelezo / Maoni</th>
+            <th>Hali (Status)</th>
+          </tr>
+        </thead>
+        <tbody id="clearanceTable">
+          <!-- Loaded dynamically via script.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

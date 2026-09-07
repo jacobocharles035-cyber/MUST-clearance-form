@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - MUST Clearance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mobile-header">
+    <h3>MUST Admin</h3>
+    <button class="menu-toggle-btn" id="menuToggleBtn">☰ Menyu</button>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="sidebar" id="sidebar">
+      <h3>MUST Admin</h3>
+      <nav>
+        <a href="admin-dashboard.html" class="active">Overview & Reports</a>
+        <a href="index.html" onclick="logout()">Ondoka (Logout)</a>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <h2>System Administrator Dashboard</h2>
+        <div>User: <strong id="currentUsername">System Admin</strong></div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Wanafunzi Wote</h3>
+          <p id="totalStudentsCount" style="font-size: 1.8rem; font-weight: bold; color: var(--primary-color);">0</p>
+        </div>
+        <div class="card">
+          <h3>Clearance Complete</h3>
+          <p id="clearedCount" style="font-size: 1.8rem; font-weight: bold; color: var(--success);">0</p>
+        </div>
+        <div class="card">
+          <h3>In Progress / Pending</h3>
+          <p id="pendingCount" style="font-size: 1.8rem; font-weight: bold; color: var(--warning);">0</p>
+        </div>
+      </div>
+
+      <h3>Orodha ya Wanafunzi na Hatua za Mwisho</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Reg No</th>
+            <th>Jina la Mwanafunzi</th>
+            <th>Kozi (Program)</th>
+            <th>Idara Zilizokamilika</th>
+            <th>Hali (Overall Status)</th>
+            <th>Kitendo (Action)</th>
+          </tr>
+        </thead>
+        <tbody id="adminStudentsTable">
+          <!-- Loaded dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

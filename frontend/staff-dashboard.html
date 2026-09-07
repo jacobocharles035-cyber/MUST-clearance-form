@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Dashboard - MUST Clearance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mobile-header">
+    <h3>MUST Staff</h3>
+    <button class="menu-toggle-btn" id="menuToggleBtn">☰ Menyu</button>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="sidebar" id="sidebar">
+      <h3>MUST Staff</h3>
+      <nav>
+        <a href="staff-dashboard.html" class="active">Maombi ya Wanafunzi</a>
+        <a href="index.html" onclick="logout(event)">Ondoka (Logout)</a>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <div>
+          <h2>Uhakiki wa Idara:</h2>
+          <select id="staffDeptSelect" style="padding: 0.5rem; font-size: 1rem; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc;">
+            <option value="Head of Department (HOD)">Head of Department (HOD)</option>
+            <option value="Library (Maktaba)">Library (Maktaba)</option>
+            <option value="Bursar / Finance" selected>Bursar / Finance</option>
+            <option value="Hostel & Accommodation">Hostel & Accommodation</option>
+            <option value="Sports & Games">Sports & Games</option>
+            <option value="Dean of Students">Dean of Students</option>
+          </select>
+        </div>
+        <div>Afisa: <strong id="currentUsername">Staff Member</strong></div>
+      </div>
+
+      <h3>Orodha ya Maombi ya Clearance</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Reg No</th>
+            <th>Jina la Mwanafunzi</th>
+            <th>Kozi</th>
+            <th>Hali Ya Jumla (Status)</th>
+            <th>Kitendo (Action)</th>
+          </tr>
+        </thead>
+        <tbody id="staffRequestsTable">
+          <!-- Data zitapakuliwa hapa moja kwa moja kutoka Backend -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuma Maombi - MUST Clearance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mobile-header">
+    <h3>MUST Clearance</h3>
+    <button class="menu-toggle-btn" id="menuToggleBtn">☰ Menyu</button>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="sidebar" id="sidebar">
+      <h3>MUST Clearance</h3>
+      <nav>
+        <a href="student-dashboard.html">Dashboard</a>
+        <a href="student-request.html" class="active">Tuma Maombi</a>
+        <a href="index.html" onclick="logout()">Ondoka (Logout)</a>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <h2>Fomu ya Ombi la Clearance</h2>
+        <div>Mtumiaji: <strong id="currentUsername">Mwanafunzi</strong></div>
+      </div>
+
+      <div class="card" style="max-width: 600px;">
+        <form id="clearanceForm">
+          <div class="form-group">
+            <label for="studentName">Jina Bufe (Jina Kamili):</label>
+            <input type="text" id="studentName" placeholder="Ingiza jina lako kamili" required>
+          </div>
+
+          <div class="form-group">
+            <label for="studentRegNo">Namba ya Usajili (Reg No):</label>
+            <input type="text" id="studentRegNo" placeholder="Mfano: 211005332001" required>
+          </div>
+
+          <div class="form-group">
+            <label for="academicProgram">Kozi / Program:</label>
+            <input type="text" id="academicProgram" placeholder="Mfano: BSc. Computer Science" required>
+          </div>
+
+          <div class="form-group">
+            <label for="academicYear">Kipindi/Mwaka wa Masomo:</label>
+            <input type="text" id="academicYear" placeholder="Mfano: 2023/2024" required>
+          </div>
+
+          <div class="form-group">
+            <label for="clearanceDoc">Pakia Kitambulisho / Stakabadhi (Receipt/PDF):</label>
+            <input type="file" id="clearanceDoc">
+          </div>
+
+          <button type="submit" class="btn">Wasilisha Maombi</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
