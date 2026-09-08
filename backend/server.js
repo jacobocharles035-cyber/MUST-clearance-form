@@ -33,7 +33,7 @@ app.use(cors({
 app.use(express.json());
 
 // 2. KUUNGANISHA NA DATABASE YA MONGODB
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://jacobocharles035_db_user:jacobo%401234@cluster0.x10rcum.mongodb.net/must_clearance_db?appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://jacobocharles035_db_user:jacobo1234@cluster0.x10rcum.mongodb.net/must_clearance_db?appName=Cluster0';
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ Database ya MongoDB imeunganishwa kikamilifu!'))
