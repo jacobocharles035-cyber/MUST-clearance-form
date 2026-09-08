@@ -3,23 +3,36 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const path = require('path');
 require('dotenv').config();
 
-// Kuagiza Models tulizotengeneza
+// Kuagiza Models
 const User = require('./models/user');
 const Clearance = require('./models/Clearance');
 
 const app = express();
 
-// Middleware
+// 1. CORS CONFIGURATION (Inaruhusu Netlify kuwasiliana na Render)
+const allowedOrigins = [
+  'https://jina-lako.netlify.app', // BADILISHA HAPA: Weka URL yako halisi ya Netlify
+  'http://localhost:3000',
+  'http://localhost:5500',
+  'http://127.0.0.1:5500'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Inaruhusu maombi yote kwa sasa kuzuia blockage
+    }
+  },
+  credentials: true
+}));
+
 app.use(express.json());
-app.use(cors());
 
-// Kuhudumia frontend static files (Kama folda yako ya frontend ipo nje ya backend)
-app.use(express.static(path.join(__dirname, '../')));
-
-// 1. KUUNGANISHA NA DATABASE YA MONGODB
+// 2. KUUNGANISHA NA DATABASE YA MONGODB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://jacobocharles035_db_user:jacobo%401234@cluster0.x10rcum.mongodb.net/must_clearance_db?appName=Cluster0';
 
 mongoose.connect(MONGO_URI)
@@ -27,22 +40,25 @@ mongoose.connect(MONGO_URI)
   .catch((err) => console.error('❌ Tatizo la kuunganisha Database:', err));
 
 // ==========================================================================
-// 2. API ROUTES
+// 3. API ROUTES (ZOTE ZINA PREFIX YA /api)
 // ==========================================================================
 
-// ROOT ROUTE (Inazuia kosa la 'Cannot GET /')
+// ROOT ROUTE
 app.get('/', (req, res) => {
   res.send('🚀 MUST Clearance API inafanya kazi kikamilifu!');
 });
 
-// A. API YA LOGIN (Inahudumia index.html)
+// A. API YA LOGIN
 app.post('/api/auth/login', async (req, res) => {
   const { username, password, role } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ message: 'Tafadhali ingiza username na password.' });
+  }
 
   try {
     let user = await User.findOne({ username, role });
 
-    // Kwa ajili ya Testing: Kama mtumiaji hayupo, anatengenezwa auto mara ya kwanza
     if (!user) {
       const hashedPassword = await bcrypt.hash(password, 10);
       user = await User.create({ username, password: hashedPassword, role });
@@ -71,7 +87,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// B. API YA KUTUMA OMBI LA CLEARANCE (Inahudumia student-request.html)
+// B. API YA KUTUMA OMBI LA CLEARANCE
 app.post('/api/clearance/request', async (req, res) => {
   const { studentName, studentRegNo, academicProgram, academicYear } = req.body;
 
@@ -108,7 +124,7 @@ app.post('/api/clearance/request', async (req, res) => {
   }
 });
 
-// C. API YA KUPATA TAARIFA ZA STUDENT DASHBOARD (Inahudumia student-dashboard.html)
+// C. API YA KUPATA TAARIFA ZA STUDENT DASHBOARD
 app.get('/api/clearance/student/:regNo', async (req, res) => {
   try {
     const clearance = await Clearance.findOne({ studentRegNo: req.params.regNo });
@@ -121,7 +137,7 @@ app.get('/api/clearance/student/:regNo', async (req, res) => {
   }
 });
 
-// D. API YA STAFF APPROVE/REJECT (Inahudumia staff-dashboard.html)
+// D. API YA STAFF APPROVE/REJECT
 app.put('/api/clearance/staff/action', async (req, res) => {
   const { studentRegNo, departmentName, status, remarks } = req.body;
 
@@ -137,7 +153,6 @@ app.put('/api/clearance/staff/action', async (req, res) => {
       if (remarks) dept.remarks = remarks;
     }
 
-    // Sasisha Overall Status kama idara zote zime-approve
     const allApproved = record.departments.every(d => d.status === 'approved');
     if (allApproved) {
       record.overallStatus = 'Cleared';
@@ -152,7 +167,7 @@ app.put('/api/clearance/staff/action', async (req, res) => {
   }
 });
 
-// E. API YA ADMIN OVERVIEW (Inahudumia admin-dashboard.html)
+// E. API YA ADMIN OVERVIEW
 app.get('/api/clearance/admin/all', async (req, res) => {
   try {
     const allStudents = await Clearance.find();
@@ -162,8 +177,8 @@ app.get('/api/clearance/admin/all', async (req, res) => {
   }
 });
 
-// 3. ANZA SERVER
+// 4. ANZA SERVER
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Backend Server inaendeshwa kwenye http://localhost:${PORT}`);
+  console.log(`🚀 Backend Server inaendeshwa kwenye Port: ${PORT}`);
 });

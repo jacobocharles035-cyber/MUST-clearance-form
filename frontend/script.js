@@ -2,7 +2,7 @@
    MUST Student Clearance System - Integrated Frontend & Backend Script
    ========================================================================== */
 
-const API_BASE_URL = 'https://must-clearance-backend.onrender.com';
+const API_BASE_URL = '//must-clearance-backend.onrender.com/api';
 
 document.addEventListener('DOMContentLoaded', () => {
 
